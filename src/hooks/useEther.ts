@@ -1,4 +1,3 @@
-import {ref, Ref} from 'vue';
 import { ethers } from "ethers";
 
 export interface ReturnEtherJs {
