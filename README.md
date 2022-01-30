@@ -1,5 +1,7 @@
 # Vue 3 Ether.js composable
 
+:warning: Do not use in production, it's currently in development :warning:
+
 Example of use:
 
 ```js
