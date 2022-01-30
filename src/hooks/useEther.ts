@@ -2,8 +2,8 @@ import {reactive, markRaw, provide} from 'vue';
 import { ethers } from "ethers";
 
 export interface ReturnEtherJs {
-  provider: ethers.providers.Web3Provider | ethers.providers.JsonRpcProvider | null
-  contract: ethers.Contract | null 
+  provider: ethers.providers.Web3Provider | ethers.providers.JsonRpcProvider
+  contract: ethers.Contract 
 }
 
 export interface ParamEtherJs {
@@ -17,15 +17,17 @@ export function useEther({
   contractAddress, 
   ABI
 }: ParamEtherJs): ReturnEtherJs {
-  let etherReturn = reactive<ReturnEtherJs>({provider: null, contract: null});
+  let provider;
 
   if (typeof providerUrl === 'string') {
-    etherReturn.provider = markRaw(new ethers.providers.JsonRpcProvider(providerUrl));
+    provider = markRaw(new ethers.providers.JsonRpcProvider(providerUrl));
   } else {
-    etherReturn.provider = markRaw(new ethers.providers.Web3Provider(<ethers.providers.ExternalProvider | ethers.providers.JsonRpcFetchFunc>providerUrl));
+    provider = markRaw(new ethers.providers.Web3Provider(<ethers.providers.ExternalProvider | ethers.providers.JsonRpcFetchFunc>providerUrl));
   }
 
-  etherReturn.contract = markRaw(new ethers.Contract(contractAddress, ABI, etherReturn.provider))
+  const contract = markRaw(new ethers.Contract(contractAddress, ABI, provider))
+
+  const etherReturn = reactive<ReturnEtherJs>({provider, contract})
 
   provide('ether', etherReturn)
 
