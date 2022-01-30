@@ -50,3 +50,27 @@ This composable use reactives variables so if the user change something on the w
   import {useConnect} from '@vuechain/vue-ethers';
   const {account, chainId, data, connect, switchChain}  = useConnect()
 ```
+
+
+## useBalance(address, contract)
+
+address is the wallet address you want to get the balance of, contract is an ethers.Contract instance (you probably want to use useEther before using useBalance)
+
+Returns:
+- **balance** (Reactive number): Token numbers of the wallet
+- **getBalance** (Function): Trigger getBalance again 
+
+```js
+const etherConf = {
+  // required parameter (URL or Web3Provider)
+  providerUrl: "http://localhost:9545", 
+  // No required parameters
+  contractAddress: '0x000000000', 
+  ABI: ContractJson.abi
+}
+
+// Contract is optional, ethers expose the full ether.js library
+const {provider, contract, ethers} = useEther(etherConf)
+const {balance, getBalance}  = useBalance(<walletAddress>, contract)
+
+```

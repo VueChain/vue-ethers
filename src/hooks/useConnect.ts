@@ -44,7 +44,6 @@ export function useConnect(): ReturnConnect {
   }
 
   const accountsChanged = (accounts: string[]) => {
-    console.log(accounts)
     if (accounts.length === 0) disconnect() 
     else account.value = ethers.utils.getAddress(accounts[0])
   }
