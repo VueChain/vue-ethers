@@ -35,12 +35,12 @@ const {provider, contract} = inject('ether')
 ## useConnect
 Used to connect with a wallet exposing a provider on `window.ethereum`;
 
-*account* (String): Address of the account
-*chainId* (String): Id of the chain 
-*data* (Object):  Object containing the *signer* attribute
-*connect* (Function): Connect to the wallet
-*disconnect* (Function): Disconnect from the wallet 
-*switchChain* ((chainId: string) => void): Switch wallet to a specific chain 
+- **account** (String): Address of the account
+- **chainId** (String): Id of the chain 
+- **data** (Object):  Object containing the *signer* attribute
+- **connect** (Function): Connect to the wallet
+- **disconnect** (Function): Disconnect from the wallet 
+- **switchChain** ((chainId: string) => void): Switch wallet to a specific chain 
 
 This composable use reactives variables so if the user change something on the wallet app, every variables are updated according to changes.
 ```js
