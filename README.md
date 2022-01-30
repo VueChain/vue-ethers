@@ -18,3 +18,11 @@ Example of use:
   const signer = provider.getSigner();
   firstBalance.value = await contract.getBalance("0x77429de8180bf083b2843bf7c055414acd6844b9");
 ```
+
+`useEther` expose a reactive variable that you can inject in child components like:
+
+```js
+import {inject} from 'vue'
+
+const {provider, contract} = inject('ether')
+```
