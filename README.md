@@ -1,3 +1,6 @@
+[![Version](https://img.shields.io/npm/v/@vuechain/vue-ethers.svg)](https://npmjs.org/package/@vuechain/vue-ethers)
+[![Downloads/week](https://img.shields.io/npm/dw/@vuechain/vue-ethers.svg)](https://npmjs.org/package/@vuechain/vue-ethers)
+
 # Vue 3 Ether.js composable
 
 :warning: Do not use in production, it's currently in development :warning:
