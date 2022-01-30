@@ -10,7 +10,7 @@ export interface ReturnEtherJs {
 export interface ParamEtherJs {
   providerUrl: ethers.providers.JsonRpcFetchFunc | ethers.providers.ExternalProvider | string
   contractAddress?: string
-  ABI: ethers.ContractInterface
+  ABI?: ethers.ContractInterface
 }
 
 export function useEther({
@@ -27,11 +27,11 @@ export function useEther({
     provider = markRaw(new ethers.providers.Web3Provider(<ethers.providers.ExternalProvider | ethers.providers.JsonRpcFetchFunc>providerUrl));
   }
 
-  if(contractAddress) {
+  if(contractAddress && ABI) {
     contract = markRaw(new ethers.Contract(contractAddress, ABI, provider))
   }
 
-  const etherReturn = reactive<ReturnEtherJs>({provider, contract: contract ?? undefined, ethers})
+  const etherReturn = reactive<ReturnEtherJs>({provider, contract: contract ?? undefined, ethers: markRaw(ethers)})
 
   provide('ether', etherReturn)
 

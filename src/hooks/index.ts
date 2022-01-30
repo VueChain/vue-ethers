@@ -1,6 +1,8 @@
 import {useEther} from './useEther';
+import {useConnect} from './useConnect';
 
 export {
-  // useEther composables
-  useEther
+  // composables
+  useEther,
+  useConnect
 }

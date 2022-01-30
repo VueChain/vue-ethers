@@ -4,21 +4,24 @@
 
 Example of use:
 
+## useEther
 ```js
   import {useEther} from '@vuechain/vue-ethers';
   import ContractJson from '../../build/contracts/MetaCoin.json';
 
   const etherConf = {
+    // required parameter (URL or Web3Provider)
     providerUrl: "http://localhost:9545", 
+    // No required parameters
     contractAddress: '0x000000000', 
     ABI: ContractJson.abi
   }
 
-  const {provider, contract} = useEther(etherConf)
+  // Contract is optional, ethers expose the full ether.js library
+  const {provider, contract, ethers} = useEther(etherConf)
 
   // You are able to use the provider and contract 
   const signer = provider.getSigner();
-  firstBalance.value = await contract.getBalance("0x77429de8180bf083b2843bf7c055414acd6844b9");
 ```
 
 `useEther` expose a reactive variable that you can inject in child components like:
@@ -27,4 +30,20 @@ Example of use:
 import {inject} from 'vue'
 
 const {provider, contract} = inject('ether')
+```
+
+## useConnect
+Used to connect with a wallet exposing a provider on `window.ethereum`;
+
+*account* (String): Address of the account
+*chainId* (String): Id of the chain 
+*data* (Object):  Object containing the *signer* attribute
+*connect* (Function): Connect to the wallet
+*disconnect* (Function): Disconnect from the wallet 
+*switchChain* ((chainId: string) => void): Switch wallet to a specific chain 
+
+This composable use reactives variables so if the user change something on the wallet app, every variables are updated according to changes.
+```js
+  import {useConnect} from '@vuechain/vue-ethers';
+  const {account, chainId, data, connect, switchChain}  = useConnect()
 ```
