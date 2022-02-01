@@ -1,6 +1,5 @@
-import {reactive, ref, markRaw, provide, inject} from 'vue';
+import {reactive} from 'vue';
 import { ethers } from "ethers";
-import {ABI} from '../core/abis/erc20';
 
 export interface Balance {
    value: number | null;

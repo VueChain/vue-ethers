@@ -35,5 +35,5 @@ export function useEther({
 
   provide('ether', etherReturn)
 
-  return etherReturn; 
+  return <ReturnEtherJs>etherReturn; 
 }

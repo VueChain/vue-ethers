@@ -1,6 +1,6 @@
 {
   "name": "@vuechain/vue-ethers",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "main": "./src/hooks/",
   "repository": {
     "type": "git",

@@ -10,7 +10,7 @@ Example of use:
 ## useEther
 ```js
   import {useEther} from '@vuechain/vue-ethers';
-  import ContractJson from '../../build/contracts/MetaCoin.json';
+  import ContractJson from '../../build/contracts/MyContract.json';
 
   const etherConf = {
     // required parameter (URL or Web3Provider)
@@ -35,6 +35,15 @@ import {inject} from 'vue'
 const {provider, contract} = inject('ether')
 ```
 
+## useContract(address, ABI, signerOrProvider)
+```js
+  import {useProvider, useContract} from '@vuechain/vue-ethers';
+  import ContractJson from '../../build/contracts/MyContract.json';
+  const {datas, getProvider}  = useProvider(window.ethereum);
+
+  const {contract} = useEther('http://localhost:9545', ContractJson.abi, datas.provider)
+```
+
 ## useConnect
 Used to connect with a wallet exposing a provider on `window.ethereum`;
 
@@ -51,6 +60,21 @@ This composable use reactives variables so if the user change something on the w
   const {account, chainId, data, connect, switchChain}  = useConnect()
 ```
 
+## useProvider(url: string | ethers.providers.ExternalProvider)
+```js
+  import {useProvider} from '@vuechain/vue-ethers';
+  const {datas, getProvider}  = useProvider(window.ethereum);
+```
+
+## useSigner(provider: ethers.providers.Web3Provider)
+Used to get the signer of a connected account
+
+```js
+  import {useSigner, useProvider} from '@vuechain/vue-ethers';
+  const {datas: provider, getProvider}  = useProvider(window.ethereum);
+
+  const {datas, getSigner}  = useSigner(provider);
+```
 
 ## useBalance(address, contract)
 
