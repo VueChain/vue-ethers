@@ -18,7 +18,7 @@ export function useConnect(): ReturnConnect {
     throw 'No provider'
   }
 
-  const provider = reactive<ethers.providers.ExternalProvider>(window.ethereum);
+  const provider = reactive(window.ethereum);
 
   const account = ref<string | null>(null);
   const chainId = ref<string | number | null>(null);
